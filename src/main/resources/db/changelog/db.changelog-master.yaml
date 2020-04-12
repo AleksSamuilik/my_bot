@@ -1,0 +1,71 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-master.yaml
+  - changeSet:
+      id: add tables part 1
+      author: sam
+      changes:
+        - createTable:
+            tableName: city
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(128)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(512)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: insert values in to tables
+      author: sam
+      changes:
+      - insert:
+          tableName: city
+          columns:
+            - column:
+                name: id
+                value: 1
+            - column:
+                name: name
+                value: "Minsk"
+            - column:
+                name: description
+                value: "Visit the national library in the shape of a diamond"
+
+      - insert:
+          tableName: city
+          columns:
+            - column:
+                name: id
+                value: 2
+            - column:
+                name: name
+                value: "Tallinn"
+            - column:
+                name: description
+                value: "Take a walk around Toompea Castle and visit the Kumu Museum. And leave the Tallinn TV Tower for another life"
+
+      - insert:
+          tableName: city
+          columns:
+            - column:
+                name: id
+                value: 3
+            - column:
+                name: name
+                value: "Pinsk"
+            - column:
+                name: description
+                value: "Go to Butrimovich’s palace.
+                        Then visit one of the oldest museums in the Republic of Belarus. Museum of Belorussian Polesie. Well, if you decide to swim in Pina, then go to Golden Sands."
