@@ -14,10 +14,10 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class MessageReciever implements Runnable {
     private final CityService cityService;
     private final int WAIT_FOR_NEW_MESSAGE_DELAY = 1000;
-    private Bot bot;
-    private Parser parser;
+    private final Bot bot;
+    private final Parser parser;
 
-    public MessageReciever(final CityService cityService,final Bot bot) {
+    public MessageReciever(final CityService cityService, final Bot bot) {
         this.cityService = cityService;
         this.bot = bot;
         parser = new Parser(bot.getBotUsername());
@@ -40,7 +40,7 @@ public class MessageReciever implements Runnable {
         }
     }
 
-    private void analyze(Object object) {
+    private void analyze(final Object object) {
         if (object instanceof Update) {
             Update update = (Update) object;
             log.info("Update recieved: " + update.toString());
@@ -48,7 +48,7 @@ public class MessageReciever implements Runnable {
         } else log.info("Cant operate type of object: " + object.toString());
     }
 
-    private void analyzeForUpdateType(Update update) {
+    private void analyzeForUpdateType(final Update update) {
         Message message = update.getMessage();
         Long chatId = message.getChatId();
 
@@ -69,7 +69,7 @@ public class MessageReciever implements Runnable {
         }
     }
 
-    private AbstractHandler getHandlerForCommand(Command command) {
+    private AbstractHandler getHandlerForCommand(final Command command) {
         if (command == null) {
             log.info("Null command accepted. This is not good scenario.");
             return new DefaultHandler(bot);

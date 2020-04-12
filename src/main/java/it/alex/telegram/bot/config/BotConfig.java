@@ -16,6 +16,8 @@ public class BotConfig {
 
     @Autowired
     private CityService cityService;
+    private final String botName = "test";
+    private final String botToken = "test";
 
     private static final int PRIORITY_FOR_SENDER = 1;
     private static final int PRIORITY_FOR_RECEIVER = 3;
@@ -24,7 +26,7 @@ public class BotConfig {
     @Bean
     public void init() {
         ApiContextInitializer.init();
-        final Bot bot = new Bot("SamOTS_bot", "1207959370:AAHK-08OX0D0grNk0oUrF-8_r2S9BK8CHRQ");
+        final Bot bot = new Bot(botName, botToken);
         final MessageReciever messageReciever = new MessageReciever(cityService, bot);
         final MessageSender messageSender = new MessageSender(bot);
 

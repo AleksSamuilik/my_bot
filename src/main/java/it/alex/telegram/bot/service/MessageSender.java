@@ -9,9 +9,9 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 @Log
 public class MessageSender implements Runnable {
     private final int SENDER_SLEEP_TIME = 1000;
-    private Bot bot;
+    private final Bot bot;
 
-    public MessageSender(Bot bot) {
+    public MessageSender(final Bot bot) {
         this.bot = bot;
     }
 
@@ -27,7 +27,7 @@ public class MessageSender implements Runnable {
                 try {
                     Thread.sleep(SENDER_SLEEP_TIME);
                 } catch (InterruptedException e) {
-                    log.info("Take interrupt while operate msg list\n"+ e);
+                    log.info("Take interrupt while operate msg list\n" + e);
                 }
             }
         } catch (Exception e) {
@@ -35,7 +35,7 @@ public class MessageSender implements Runnable {
         }
     }
 
-    private void send(Object object) {
+    private void send(final Object object) {
         try {
             MessageType messageType = messageType(object);
             switch (messageType) {
@@ -53,11 +53,11 @@ public class MessageSender implements Runnable {
                     log.info("Cant detect type of object. " + object);
             }
         } catch (Exception e) {
-            log.info(e.getMessage()+"\n"+ e);
+            log.info(e.getMessage() + "\n" + e);
         }
     }
 
-    private MessageType messageType(Object object) {
+    private MessageType messageType(final Object object) {
         if (object instanceof SendSticker) return MessageType.STICKER;
         if (object instanceof BotApiMethod) return MessageType.EXECUTE;
         return MessageType.NOT_DETECTED;

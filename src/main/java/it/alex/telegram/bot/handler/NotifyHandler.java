@@ -12,14 +12,14 @@ public class NotifyHandler extends AbstractHandler {
 
     private static final long DEFAULT_TIME = 30;
     private final int MILLISEC_IN_SEC = 1000;
-    private String WRONG_INPUT_MESSAGE = "Wrong input. Time must be specified as an integer greater than 0";
+    private final String WRONG_INPUT_MESSAGE = "Wrong input. Time must be specified as an integer greater than 0";
 
-    public NotifyHandler(Bot bot) {
+    public NotifyHandler(final Bot bot) {
         super(bot);
     }
 
     @Override
-    public String operate(String chatId, ParsedCommand parsedCommand, Update update) {
+    public String operate(final String chatId,final ParsedCommand parsedCommand,final Update update) {
         String text = parsedCommand.getText();
         if ("".equals(text)) {
             return "You must specify the delay time. Like this:\n" +
