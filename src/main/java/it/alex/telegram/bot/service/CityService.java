@@ -23,8 +23,8 @@ public class CityService {
     @Autowired
     private CityMapper cityMapper;
 
-    public String getCityDescription(String cityName) {
-        Optional<City> city = cityRepository.findByName(cityName);
+    public String getCityDescription(final String cityName) {
+        final Optional<City> city = cityRepository.findByName(cityName);
         if (city.isPresent()) {
             return city.get().getName() + " -> " + city.get().getDescription();
         }
@@ -32,13 +32,13 @@ public class CityService {
     }
 
     @Transactional
-    public void addCity(CityDTO newCityRequest) {
-        City city = cityMapper.sourceToDestination(newCityRequest);
+    public void addCity(final CityDTO newCityRequest) {
+        final City city = cityMapper.sourceToDestination(newCityRequest);
         cityRepository.save(city);
     }
 
-    public CityDTO getCity(Long cityId) throws BotCityNotFoundException {
-        Optional<City> city = cityRepository.findById(cityId);
+    public CityDTO getCity(final Long cityId) throws BotCityNotFoundException {
+        final Optional<City> city = cityRepository.findById(cityId);
         if (city.isPresent()) {
             return cityMapper.destinationToSource(city.get());
         }
@@ -46,8 +46,8 @@ public class CityService {
     }
 
     @Transactional
-    public void updateCity(Long cityId, UpdateCityDataDTO updateRequest) throws BotCityNotFoundException {
-        City city = cityRepository.findById(cityId).orElseThrow(() -> new BotCityNotFoundException("City not found"));
+    public void updateCity(final Long cityId, final UpdateCityDataDTO updateRequest) throws BotCityNotFoundException {
+        final City city = cityRepository.findById(cityId).orElseThrow(() -> new BotCityNotFoundException("City not found"));
         city.setDescription(updateRequest.getDescription());
         cityRepository.save(city);
     }
@@ -57,13 +57,13 @@ public class CityService {
         return cityRepository.findAll().stream().map(cityMapper::destinationToSource).collect(Collectors.toList());
     }
 
-    public void delCity(Long cityId) throws BotCityNotFoundException {
-        City city = cityRepository.findById(cityId).orElseThrow(() -> new BotCityNotFoundException("City not found"));
+    public void delCity(final Long cityId) throws BotCityNotFoundException {
+        final City city = cityRepository.findById(cityId).orElseThrow(() -> new BotCityNotFoundException("City not found"));
         deleteCity(city);
     }
 
     @Transactional
-    public void deleteCity(City city) {
+    public void deleteCity(final City city) {
         cityRepository.delete(city);
     }
 }

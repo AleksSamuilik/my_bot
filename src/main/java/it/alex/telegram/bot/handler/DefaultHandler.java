@@ -7,12 +7,12 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Log
 public class DefaultHandler extends AbstractHandler {
-    public DefaultHandler(Bot bot) {
+    public DefaultHandler(final Bot bot) {
         super(bot);
     }
 
     @Override
-    public String operate(String chatId, ParsedCommand parsedCommand, Update update) {
+    public String operate(final String chatId, final ParsedCommand parsedCommand, final Update update) {
         return "";
     }
 }

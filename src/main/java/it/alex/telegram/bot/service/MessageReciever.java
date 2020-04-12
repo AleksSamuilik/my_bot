@@ -17,7 +17,7 @@ public class MessageReciever implements Runnable {
     private Bot bot;
     private Parser parser;
 
-    public MessageReciever(CityService cityService, Bot bot) {
+    public MessageReciever(final CityService cityService,final Bot bot) {
         this.cityService = cityService;
         this.bot = bot;
         parser = new Parser(bot.getBotUsername());

@@ -12,13 +12,13 @@ public class CityHandler extends AbstractHandler {
     private final CityService cityService;
     private static final String DEFAULT_CITY = "Minsk";
 
-    public CityHandler(Bot bot, CityService cityService) {
+    public CityHandler(final Bot bot, final CityService cityService) {
         super(bot);
         this.cityService = cityService;
     }
 
     @Override
-    public String operate(String chatId, ParsedCommand parsedCommand, Update update) {
+    public String operate(final String chatId, final ParsedCommand parsedCommand, final Update update) {
         String text = parsedCommand.getText();
         if (text.isEmpty()) {
             return "You must specify the name of the city. Like this:\n" +
