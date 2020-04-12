@@ -16,8 +16,8 @@ public class BotConfig {
 
     @Autowired
     private CityService cityService;
-    private final String botName = "test";
-    private final String botToken = "test";
+    private final String botName = "SamOTS_bot";
+    private final String botToken = "1207959370:AAHK-08OX0D0grNk0oUrF-8_r2S9BK8CHRQ";
 
     private static final int PRIORITY_FOR_SENDER = 1;
     private static final int PRIORITY_FOR_RECEIVER = 3;
