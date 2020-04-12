@@ -13,6 +13,7 @@ import org.telegram.telegrambots.ApiContextInitializer;
 @Component
 @Log
 public class BotConfig {
+
     @Autowired
     private CityService cityService;
 
@@ -20,23 +21,22 @@ public class BotConfig {
     private static final int PRIORITY_FOR_RECEIVER = 3;
 
 
-
     @Bean
     public void init() {
         ApiContextInitializer.init();
-        Bot bot = new Bot("SamOTS_bot", "1207959370:AAHK-08OX0D0grNk0oUrF-8_r2S9BK8CHRQ");
-        MessageReciever messageReciever = new MessageReciever(cityService, bot);
-        MessageSender messageSender = new MessageSender(bot);
+        final Bot bot = new Bot("SamOTS_bot", "1207959370:AAHK-08OX0D0grNk0oUrF-8_r2S9BK8CHRQ");
+        final MessageReciever messageReciever = new MessageReciever(cityService, bot);
+        final MessageSender messageSender = new MessageSender(bot);
 
         bot.botConnect();
 
-        Thread receiver = new Thread(messageReciever);
+        final Thread receiver = new Thread(messageReciever);
         receiver.setDaemon(true);
         receiver.setName("MsgReciever");
         receiver.setPriority(PRIORITY_FOR_RECEIVER);
         receiver.start();
 
-        Thread sender = new Thread(messageSender);
+        final Thread sender = new Thread(messageSender);
         sender.setDaemon(true);
         sender.setName("MsgSender");
         sender.setPriority(PRIORITY_FOR_SENDER);

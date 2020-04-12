@@ -29,6 +29,6 @@ public class Notify implements Runnable {
     }
 
     private SendMessage getFirstMessage() {
-        return new SendMessage(chatID, "I will send you notify after " + delayInMillisec / MILLISEC_IN_SEC + "sec");
+        return new SendMessage(chatID, "I will send you notify after " + delayInMillisec / MILLISEC_IN_SEC + " sec");
     }
 }

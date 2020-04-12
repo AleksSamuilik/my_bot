@@ -41,7 +41,7 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public void botConnect() {
-        TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
+      final   TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
             telegramBotsApi.registerBot(this);
             log.info("[STARTED] TelegramAPI. Bot Connected. Bot class: " + this);
